@@ -1,0 +1,143 @@
+.section {
+  padding: var(--section-space) 0 var(--section-space-end);
+  position: relative;
+}
+
+.section--alt {
+  background: var(--bg-secondary);
+}
+
+.section--intro {
+  padding-top: 72px;
+}
+
+.section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section__inner--center {
+  text-align: center;
+  margin-bottom: var(--section-heading-gap);
+}
+
+.section__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section__headline {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.section__headline--large {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section__body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.section__emphasis {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-top: 8px;
+}
+
+.section__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.section__split--reverse .section__text {
+  order: -1;
+}
+
+.section__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visual-combo {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  min-height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 16px;
+}
+
+.visual-combo .bump-device-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.phone-app--floating {
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  z-index: 3;
+  transform: rotate(6deg);
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: var(--section-space) 0 var(--section-space-end);
+  }
+
+  .section__inner {
+    padding: 0 24px;
+  }
+
+  .section__split,
+  .section__split--reverse {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .section__split--reverse .section__text {
+    order: 0;
+  }
+
+  .section__inner--center {
+    margin-bottom: var(--section-heading-gap);
+  }
+
+  .phone-app--floating {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    margin-top: -40px;
+  }
+
+  .visual-combo {
+    flex-direction: column;
+    min-height: auto;
+    gap: 24px;
+  }
+}

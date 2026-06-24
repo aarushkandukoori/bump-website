@@ -1,0 +1,756 @@
+/* iPhone 15 proportions: screen 393 × 852 pt */
+.phone-app {
+  --phone-bezel: 9px;
+  --phone-radius: 44px;
+  --screen-radius: 36px;
+  --screen-ratio: 393 / 852;
+  --screen-bg: #f2f2f7;
+  --status-bar-height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone-app--sm { --phone-width: 200px; --phone-radius: 34px; --screen-radius: 26px; --status-bar-height: 30px; }
+.phone-app--md { --phone-width: 248px; --phone-radius: 44px; --screen-radius: 36px; --status-bar-height: 36px; }
+.phone-app--lg { --phone-width: 268px; --phone-radius: 46px; --screen-radius: 38px; --status-bar-height: 38px; }
+
+.phone-app__device {
+  position: relative;
+  width: var(--phone-width);
+}
+
+.phone-app__frame {
+  width: 100%;
+  padding: var(--phone-bezel);
+  border-radius: var(--phone-radius);
+  overflow: hidden;
+  transform: translateZ(0);
+  background: linear-gradient(
+    160deg,
+    #58585a 0%,
+    #3a3a3c 15%,
+    #1c1c1e 45%,
+    #2c2c2e 85%,
+    #48484a 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 0.5px rgba(0, 0, 0, 0.6),
+    0 20px 40px rgba(10, 10, 18, 0.22),
+    0 6px 14px rgba(10, 10, 18, 0.1);
+}
+
+.phone-app__screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--screen-ratio);
+  border-radius: var(--screen-radius);
+  overflow: hidden;
+  background: var(--screen-bg);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.phone-app__ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--screen-bg);
+  overflow: hidden;
+}
+
+.phone-app__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--status-bar-height);
+  background: var(--screen-bg);
+}
+
+/* Side buttons — positioned relative to frame height */
+.phone-app__side-btn {
+  position: absolute;
+  background: linear-gradient(90deg, #3a3a3c, #1c1c1e 50%, #3a3a3c);
+  border-radius: 2px;
+  z-index: 2;
+  width: 3px;
+}
+
+.phone-app__side-btn--silent { left: -2px; top: 18%; height: 5%; }
+.phone-app__side-btn--vol-up { left: -2px; top: 26%; height: 8%; }
+.phone-app__side-btn--vol-down { left: -2px; top: 36%; height: 8%; }
+.phone-app__side-btn--power { right: -2px; top: 30%; height: 11%; }
+
+.phone-app__shadow {
+  width: 68%;
+  height: 18px;
+  background: radial-gradient(ellipse, rgba(10, 10, 18, 0.18) 0%, transparent 72%);
+  margin-top: 12px;
+}
+
+.phone-app__shadow--ambient {
+  width: 82%;
+  height: 10px;
+  margin-top: -5px;
+  opacity: 0.4;
+}
+
+/* ── Dynamic Island ── */
+.ios-dynamic-island {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  min-width: 72px;
+  max-width: 96px;
+  height: 22px;
+  background: #000;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  z-index: 10;
+}
+
+.phone-app--sm .ios-dynamic-island {
+  height: 18px;
+  min-width: 58px;
+  top: 6px;
+}
+
+.ios-dynamic-island__cam {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #1a3a5c, #0a1520);
+}
+
+/* ── Tab bar ── */
+.ios-tab-bar {
+  flex-shrink: 0;
+  background: var(--screen-bg);
+  border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 2px;
+}
+
+.ios-tab-bar__items {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 8px 2px;
+}
+
+.phone-app--sm .ios-tab-bar__items {
+  padding: 4px 6px 2px;
+}
+
+.ios-tab-bar__indicator {
+  width: 32%;
+  max-width: 96px;
+  height: 4px;
+  background: #1c1c1e;
+  border-radius: 2px;
+  margin: 4px auto 3px;
+  opacity: 0.18;
+}
+
+.phone-app--sm .ios-tab-bar__indicator {
+  height: 3px;
+  margin: 3px auto 2px;
+}
+
+.ios-tab-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 9px;
+  font-weight: 500;
+  color: #8e8e93;
+}
+
+.ios-tab-bar__item svg {
+  width: 18px;
+  height: 18px;
+}
+
+.phone-app--sm .ios-tab-bar__item svg {
+  width: 15px;
+  height: 15px;
+}
+
+.phone-app--sm .ios-tab-bar__item {
+  font-size: 8px;
+}
+
+.ios-tab-bar__item--active {
+  color: var(--accent);
+}
+
+/* ── App screens ── */
+.app-screen {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  padding: 4px 12px 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--screen-bg);
+}
+
+.phone-app--sm .app-screen {
+  padding: 2px 10px 6px;
+}
+
+.app-screen-heading {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #1c1c1e;
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.phone-app--sm .app-screen-heading {
+  font-size: 14px;
+}
+
+.app-screen-sub {
+  font-size: 11px;
+  color: #8e8e93;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.phone-app--sm .app-screen-sub {
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+/* ── Dashboard ── */
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.app-nav__logo {
+  object-fit: contain;
+  height: 14px;
+  width: auto;
+}
+
+.phone-app--sm .app-nav__logo {
+  height: 12px;
+}
+
+.app-nav__badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 500;
+  color: #636366;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 3px 7px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+}
+
+.phone-app--sm .app-nav__badge {
+  font-size: 8px;
+  padding: 2px 6px;
+}
+
+.app-nav__badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #30d158;
+  flex-shrink: 0;
+}
+
+.app-hero-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.phone-app--sm .app-hero-card {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.app-hero-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.app-hero-card__label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #8e8e93;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.app-hero-card__status {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.app-hero-card__status--normal {
+  background: rgba(48, 209, 88, 0.12);
+  color: #248a3d;
+}
+
+.app-hero-card__value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.app-hero-card__value {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #1c1c1e;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.phone-app--lg .app-hero-card__value { font-size: 40px; }
+.phone-app--sm .app-hero-card__value { font-size: 28px; }
+
+.app-hero-card__unit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8e8e93;
+}
+
+.phone-app--sm .app-hero-card__unit { font-size: 12px; }
+
+.app-ecg-wrap {
+  background: linear-gradient(180deg, rgba(122, 24, 24, 0.04) 0%, transparent 100%);
+  border-radius: 8px;
+  padding: 4px 2px;
+  margin-bottom: 6px;
+}
+
+.app-ecg {
+  width: 100%;
+  height: 36px;
+  display: block;
+}
+
+.phone-app--sm .app-ecg { height: 28px; }
+
+.app-hero-card__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #aeaeb2;
+}
+
+.app-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.app-stat-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  min-width: 0;
+}
+
+.phone-app--sm .app-stat-card { padding: 8px; gap: 6px; }
+
+.app-stat-card__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.phone-app--sm .app-stat-card__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.app-stat-card__icon--dose {
+  background: rgba(122, 24, 24, 0.08);
+  color: var(--accent);
+}
+
+.app-stat-card__icon--battery {
+  background: rgba(48, 209, 88, 0.1);
+  color: #248a3d;
+}
+
+.app-stat-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.app-stat-card__label {
+  font-size: 9px;
+  color: #8e8e93;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-stat-card__value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1c1c1e;
+}
+
+.phone-app--sm .app-stat-card__value { font-size: 12px; }
+
+.app-device-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
+}
+
+.app-device-card__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f2f2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #636366;
+  flex-shrink: 0;
+}
+
+.app-device-card__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.app-device-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+
+.app-device-card__sub {
+  font-size: 10px;
+  color: #8e8e93;
+}
+
+.app-device-card svg:last-child {
+  color: #c7c7cc;
+  flex-shrink: 0;
+}
+
+/* ── Alert ── */
+.app-screen--alert {
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px 12px;
+}
+
+.app-alert-sheet {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 14px 14px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  animation: alert-sheet-pulse 2s ease-in-out infinite;
+}
+
+@keyframes alert-sheet-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(122, 24, 24, 0.08); }
+  50% { box-shadow: 0 6px 28px rgba(122, 24, 24, 0.16); }
+}
+
+.phone-app--sm .app-alert-sheet {
+  padding: 14px 12px 12px;
+  border-radius: 12px;
+}
+
+.app-alert-sheet__icon {
+  margin-bottom: 10px;
+}
+
+.app-alert-sheet__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.app-alert-sheet__title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1c1c1e;
+  margin-bottom: 6px;
+}
+
+.phone-app--sm .app-alert-sheet__title { font-size: 13px; }
+
+.app-alert-sheet__body {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #636366;
+  margin-bottom: 12px;
+}
+
+.app-alert-sheet__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.app-alert-sheet__stats div {
+  background: #f2f2f7;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-alert-sheet__stats span {
+  font-size: 9px;
+  color: #8e8e93;
+}
+
+.app-alert-sheet__stats strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1c1c1e;
+}
+
+.app-alert-sheet__cta {
+  width: 100%;
+  padding: 11px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.phone-app--sm .app-alert-sheet__cta {
+  font-size: 11px;
+  padding: 9px;
+}
+
+.app-alert-sheet__secondary {
+  width: 100%;
+  padding: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* ── History ── */
+.app-screen--history {
+  overflow: hidden;
+}
+
+.app-event-list {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  flex: 1;
+  min-height: 0;
+}
+
+.app-event-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.phone-app--sm .app-event-row { padding: 8px 10px; }
+
+.app-event-row:last-child { border-bottom: none; }
+
+.app-event-row__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.app-event-row__dot--ok { background: #30d158; }
+.app-event-row__dot--info { background: var(--accent); }
+
+.app-event-row__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-event-row__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 1px;
+}
+
+.app-event-row__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1c1c1e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-event-row__time {
+  font-size: 10px;
+  color: #aeaeb2;
+  flex-shrink: 0;
+}
+
+.app-event-row__sub {
+  font-size: 10px;
+  color: #8e8e93;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Status / Monitor ── */
+.app-screen--status {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.app-monitor-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 8px auto 12px;
+  flex-shrink: 0;
+}
+
+.phone-app--lg .app-monitor-ring { width: 140px; height: 140px; }
+.phone-app--sm .app-monitor-ring { width: 100px; height: 100px; }
+
+.app-monitor-ring__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-monitor-ring__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-monitor-ring__bpm {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #1c1c1e;
+  line-height: 1;
+}
+
+.phone-app--sm .app-monitor-ring__bpm { font-size: 26px; }
+
+.app-monitor-ring__unit {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8e8e93;
+}
+
+.app-monitor-pills {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.app-monitor-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 14px;
+  background: #ebebed;
+  color: #636366;
+}
+
+.app-monitor-pill--active {
+  background: rgba(122, 24, 24, 0.1);
+  color: var(--accent);
+}
+
+.app-monitor-note {
+  font-size: 10px;
+  color: #aeaeb2;
+  flex-shrink: 0;
+}
+
+/* ── Section placement ── */
+.phone-app--floating {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  z-index: 3;
+}
+
+@media (max-width: 900px) {
+  .phone-app--floating {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: -16px;
+  }
+}

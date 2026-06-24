@@ -1,0 +1,295 @@
+.how-it-works {
+  padding: var(--section-space) 0 0;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.how-it-works .section__inner--center {
+  margin-bottom: calc(var(--section-heading-gap) / 2);
+}
+
+.journey-scroller {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.journey-scroller__sticky {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+  display: grid;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.15fr);
+  gap: 56px;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height) - 48px);
+  padding: 20px 0 32px;
+}
+
+.journey-scroller__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-right: 12px;
+}
+
+.journey-step {
+  border-left: 2px solid transparent;
+  padding-left: 18px;
+  transition: border-color 0.4s ease;
+}
+
+.journey-step--active {
+  border-left-color: var(--accent);
+}
+
+.journey-step--lit:not(.journey-step--active) {
+  border-left-color: rgba(122, 24, 24, 0.18);
+}
+
+.journey-step__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.journey-step__number {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.journey-step__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.journey-step__title {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.journey-step__desc {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  overflow: hidden;
+  max-width: 380px;
+}
+
+.journey-scroller__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.journey-scroller__visual-frame {
+  width: 100%;
+  max-width: 620px;
+  position: relative;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  min-height: 420px;
+  box-shadow: var(--shadow-sm);
+}
+
+.journey-scroller__visual-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  padding: 40px 24px 56px;
+}
+
+.how-step__phone {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  z-index: 2;
+  transform: scale(0.9);
+  transform-origin: bottom right;
+}
+
+.how-step__device.bump-device-wrap {
+  transform: none !important;
+}
+
+.journey-heartdrop {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.journey-heartdrop__line {
+  position: absolute;
+  inset: auto 20px 48px 20px;
+  height: 180px;
+  opacity: 0.95;
+}
+
+.journey-heartdrop__device {
+  position: relative;
+  z-index: 1;
+}
+
+.journey-transport {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.journey-transport__ambulance {
+  width: 100%;
+  max-width: 360px;
+  justify-self: start;
+}
+
+.journey-transport__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 14px 22px rgba(10, 10, 18, 0.15));
+}
+
+.journey-transport__hospital {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.journey-transport__hospital .journey-hospital__icon {
+  width: 178px;
+  max-width: 178px;
+}
+
+.journey-hospital {
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journey-hospital__building {
+  position: relative;
+  z-index: 1;
+  margin-right: 56px;
+  margin-bottom: 8px;
+}
+
+.journey-hospital__icon {
+  width: 196px;
+  max-width: 196px;
+  display: block;
+  filter: drop-shadow(0 14px 22px rgba(10, 10, 18, 0.12));
+}
+
+.journey-hospital__pulse {
+  position: absolute;
+  left: 28px;
+  right: 120px;
+  bottom: 64px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.journey-hospital__pulse svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .how-it-works {
+    padding-top: var(--section-space);
+  }
+
+  .journey-scroller {
+    padding: 0 24px;
+  }
+
+  .journey-scroller__sticky {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 0 0 48px;
+  }
+
+  .journey-scroller__sidebar {
+    gap: 20px;
+    padding-right: 0;
+  }
+
+  .journey-step__desc {
+    max-height: none;
+  }
+
+  .journey-scroller__visual-frame,
+  .journey-scroller__visual-stage {
+    min-height: 360px;
+  }
+
+  .journey-scroller__visual-frame {
+    max-width: none;
+  }
+
+  .journey-scroller__visual-stage {
+    padding: 28px 16px 40px;
+  }
+
+  .how-step__phone {
+    right: 8px;
+    bottom: 8px;
+    transform: scale(0.8);
+  }
+
+  .journey-transport {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    min-height: 300px;
+  }
+
+  .journey-transport__ambulance {
+    max-width: 320px;
+    justify-self: center;
+  }
+
+  .journey-transport__hospital .journey-hospital__icon {
+    width: 156px;
+    max-width: 156px;
+  }
+
+  .journey-hospital__building {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .journey-hospital__icon {
+    width: 168px;
+    max-width: 168px;
+  }
+
+  .journey-hospital__pulse {
+    left: 16px;
+    right: 88px;
+    bottom: 52px;
+    height: 40px;
+  }
+}
