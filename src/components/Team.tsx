@@ -5,7 +5,7 @@ const team = [
   {
     name: 'Aarush Kandukoori',
     title: 'Co-Founder & CEO',
-    photo: '/team/aarush-kandukoori.png',
+    photo: `${import.meta.env.BASE_URL}team/aarush-kandukoori.png`,
     linkedin: 'https://www.linkedin.com/in/aarush-kandukoori/',
     email: 'aarushkandukoori@gmail.com',
     bio: 'Leads BUMP’s vision to bring autonomous cardiac safeguards out of the clinic and onto the body — building products designed for the moments when care cannot wait.',
@@ -13,7 +13,7 @@ const team = [
   {
     name: 'Aditya Kandukoori',
     title: 'Co-Founder & CTO',
-    photo: '/team/aditya-kandukoori.png',
+    photo: `${import.meta.env.BASE_URL}team/aditya-kandukoori.png`,
     linkedin: 'https://www.linkedin.com/in/aditya-kandukoori-9410563b1/',
     email: 'adirocknbolt@gmail.com',
     bio: 'Architects BUMP’s closed-loop sensing, detection, and response systems — combining embedded hardware and software to deliver reliable, real-time cardiac intervention.',

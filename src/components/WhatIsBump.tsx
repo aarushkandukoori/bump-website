@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BumpDevice } from './BumpDevice';
+import { PatentNotice } from './PatentNotice';
 import { PhoneApp } from './PhoneApp';
 import './Section.css';
 
@@ -60,21 +61,15 @@ export function WhatIsBump() {
             Continuous monitoring, autonomous response
           </h3>
           <p className="section__body">
-            BUMP (Bradycardia Urgent Management Pump) is a wearable, closed-loop
-            emergency device for people at risk of crashing bradycardia — a
-            sudden, dangerous drop in heart rate that can lead to fainting or
-            cardiac arrest.
-          </p>
-          <p className="section__body">
-            The device continuously monitors heart rate and, when it detects a
-            dangerous drop, delivers a measured dose of medication while
-            triggering visual, audible, and tactile alerts to summon help. It
-            buys the patient critical time to reach professional care.
+            BUMP watches heart rate around the clock. When a dangerous drop is
+            detected, it delivers medication and triggers visual, audible, and
+            tactile alerts to summon help — buying critical time before EMS
+            arrives.
           </p>
           <p className="section__emphasis">
-            This isn't just a monitor. It's an autonomous safeguard for the
-            moments when care can't wait.
+            Not a monitor. An autonomous safeguard for when care can&apos;t wait.
           </p>
+          <PatentNotice />
         </motion.div>
       </div>
     </section>

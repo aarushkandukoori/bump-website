@@ -1,4 +1,4 @@
-export const LOGO_SRC = '/bump-logo.png';
+export const LOGO_SRC = `${import.meta.env.BASE_URL}bump-logo.png`;
 export const LOGO_ASPECT = 724 / 345;
 
 interface LogoProps {

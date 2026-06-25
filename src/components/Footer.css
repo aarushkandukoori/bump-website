@@ -41,6 +41,24 @@
   border-color: var(--accent-muted);
 }
 
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+}
+
+.footer__link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: var(--accent);
+}
+
 .footer__copy {
   font-size: 14px;
   color: var(--text-secondary);

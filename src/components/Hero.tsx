@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BumpDevice } from './BumpDevice';
+import { PatentNotice } from './PatentNotice';
 import './Hero.css';
 
 export function Hero() {
@@ -25,6 +26,7 @@ export function Hero() {
             bradycardia — continuous monitoring and autonomous response when
             seconds matter.
           </p>
+          <PatentNotice variant="badge" />
         </motion.div>
 
         <div className="hero__visual">
