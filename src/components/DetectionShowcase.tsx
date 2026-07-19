@@ -21,7 +21,6 @@ const HIGHLIGHTS = [
 ] as const;
 
 const GITHUB_URL = 'https://github.com/aarushkandukoori/bump-detection';
-const DEMO_URL = 'https://demo.bump-labs.com';
 
 export function DetectionShowcase() {
   return (
@@ -74,13 +73,10 @@ export function DetectionShowcase() {
           </p>
           <div className="detection-showcase__actions">
             <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/demo"
               className="detection-showcase__link detection-showcase__link--primary"
             >
               Try the live demo
-              <ExternalLinkIcon />
             </a>
             <a
               href={GITHUB_URL}

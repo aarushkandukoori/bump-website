@@ -1,31 +1,50 @@
-import { FeatureCarousel } from './components/FeatureCarousel';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { WhatIsBump } from './components/WhatIsBump';
-import { HowItWorks } from './components/HowItWorks';
-import { Team } from './components/Team';
-import { Research } from './components/Research';
-import { DetectionShowcase } from './components/DetectionShowcase';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { HomePage } from './pages/HomePage';
 
-function App() {
+const DemoPage = lazy(() =>
+  import('./pages/DemoPage').then((m) => ({ default: m.DemoPage })),
+);
+
+function DemoFallback() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <WhatIsBump />
-        <HowItWorks />
-        <FeatureCarousel />
-        <Research />
-        <DetectionShowcase />
-        <Team />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'grid',
+        placeItems: 'center',
+        color: '#5c5c6e',
+        fontFamily: 'Inter, system-ui, sans-serif',
+      }}
+    >
+      Loading demo…
+    </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/demo"
+          element={
+            <Suspense fallback={<DemoFallback />}>
+              <DemoPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/demo/"
+          element={
+            <Suspense fallback={<DemoFallback />}>
+              <DemoPage />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
