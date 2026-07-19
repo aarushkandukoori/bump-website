@@ -79,6 +79,13 @@
   gap: 16px 24px;
 }
 
+.detection-showcase__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
 .detection-showcase__note {
   font-size: 14px;
   line-height: 1.55;
@@ -95,6 +102,19 @@
   color: var(--accent);
   white-space: nowrap;
   transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.detection-showcase__link--primary {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.detection-showcase__link--primary:hover {
+  background: var(--accent-hover);
+  color: #ffffff;
+  gap: 10px;
 }
 
 .detection-showcase__link:hover {

@@ -21,6 +21,7 @@ const HIGHLIGHTS = [
 ] as const;
 
 const GITHUB_URL = 'https://github.com/aarushkandukoori/bump-detection';
+const DEMO_URL = 'https://demo.bump-labs.com';
 
 export function DetectionShowcase() {
   return (
@@ -71,15 +72,26 @@ export function DetectionShowcase() {
             Open engineering prototype — not a clinical product. Live dashboard,
             Redis Streams, TimescaleDB, and CI included.
           </p>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="detection-showcase__link"
-          >
-            View detection pipeline on GitHub
-            <ExternalLinkIcon />
-          </a>
+          <div className="detection-showcase__actions">
+            <a
+              href={DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="detection-showcase__link detection-showcase__link--primary"
+            >
+              Try the live demo
+              <ExternalLinkIcon />
+            </a>
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="detection-showcase__link"
+            >
+              View pipeline on GitHub
+              <ExternalLinkIcon />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
