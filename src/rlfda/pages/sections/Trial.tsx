@@ -21,13 +21,29 @@ function interpretPrimary(e: EndpointResult): string {
   const d = e.difference;
   const superior = d.low > 0;
   const inferior = d.high < 0;
-  const width = `${fmt(d.low, 1)} to ${fmt(d.high, 1)} percentage points`;
+  // Magnitudes, so that a sentence which already states the direction does
+  // not also carry a minus sign.
+  const lo = Math.min(Math.abs(d.low), Math.abs(d.high));
+  const hi = Math.max(Math.abs(d.low), Math.abs(d.high));
+  const width = `${fmt(lo, 1)} to ${fmt(hi, 1)} percentage points`;
+  // The interval and the signed-rank test can disagree near the boundary,
+  // because one is a bootstrap on the mean difference and the other a rank
+  // test on the same pairs. Saying so is better than letting a reader find it.
+  const disagree =
+    (superior || inferior) && Number.isFinite(e.wilcoxonP) && e.wilcoxonP > 0.05;
+  const caveat = disagree
+    ? ` The signed-rank test on the same pairs does not reach conventional significance ` +
+      `(p = ${fmtP(e.wilcoxonP)}); the interval is a bootstrap on the mean difference and the ` +
+      `test is a rank statistic, and near the boundary they need not agree. On the analysis plan ` +
+      `stated above the interval is the inferential object, but a result that rests on which of ` +
+      `two reasonable procedures you chose is a weak result, and should be read as one.`
+    : '';
   if (superior) {
     return (
       `The interval lies entirely above zero, so on this cohort and in this model the learned ` +
       `controller held pressure in target longer than the guideline algorithm, by ${width}. ` +
       `That is a statement about the model, and it is worth exactly what the credibility ` +
-      `assessment supports — no more.`
+      `assessment supports — no more.${caveat}`
     );
   }
   if (inferior) {
@@ -37,7 +53,7 @@ function interpretPrimary(e: EndpointResult): string {
       `is a well-tuned deterministic algorithm applied to the population it was written for, ` +
       `and being beaten by it is a real result rather than a bug to be tuned away. The safety ` +
       `and control-performance endpoints below are where the difference between the two ` +
-      `approaches actually shows up.`
+      `approaches actually shows up.${caveat}`
     );
   }
   return (
