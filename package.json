@@ -16,7 +16,8 @@
     "trial": "node tools/trial.ts",
     "verify:stats": "node verification/statsCheck.ts",
     "verify:all": "npm run verify && npm run verify:grid && npm run verify:stats && npm run verify:ffr && node verification/livePathParity.ts",
-    "verify:ffr": "node verification/ffrSensitivity.ts"
+    "verify:ffr": "node verification/ffrSensitivity.ts",
+    "verify:selection": "node verification/selectionOptimism.ts"
   },
   "dependencies": {
     "framer-motion": "^12.41.0",
