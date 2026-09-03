@@ -35,12 +35,23 @@ export function gaussianDriver(tSinceOnset: number, centre = 0.27, width = 80): 
  *   g1 = (t/T1)^m1,  g2 = (t/T2)^m2
  *   s(t) = g1/(1+g1) * 1/(1+g2)
  *
- * Stergiopulos defines T1 and T2 as fractions of the cardiac period. Because
- * mechanical systole scales with sqrt(RR) rather than with RR itself, we
- * instead express T1 and T2 as fractions of the *systole duration* supplied by
- * `systoleDuration()`. The fractions below are the Stergiopulos values
- * rescaled by two, so the activation rises, peaks and returns to baseline
- * within one systole at every simulated heart rate.
+ * The double-Hill form is the standard shape for a normalised elastance
+ * waveform: a slow Hill term brings the curve up, a much steeper one brings it
+ * back down, and the asymmetry between the two is what distinguishes it from a
+ * Gaussian. The published parameterisations express T1 and T2 as fractions of
+ * the cardiac period; because mechanical systole scales with sqrt(RR) rather
+ * than with RR itself, T1 and T2 are expressed here as fractions of the
+ * systole duration supplied by `systoleDuration()` instead.
+ *
+ * The four constants below are a modelling choice, not values taken from a
+ * source this project verified. They are checked directly rather than cited:
+ * the driver is normalised numerically to a unit peak, and the resulting
+ * activation is confirmed to rise, peak and return to baseline within one
+ * systole across the whole simulated rate range, giving a systolic fraction
+ * that rises from about a quarter of the cycle at 40 min^-1 to about a half
+ * at 120. Their influence is in any case absorbed by the calibration, which is
+ * performed with them in place and validated against eighteen independent
+ * haemodynamic quantities.
  */
 export const HILL_M1 = 1.32;
 export const HILL_M2 = 21.9;
