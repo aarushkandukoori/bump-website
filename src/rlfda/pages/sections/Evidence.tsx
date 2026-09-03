@@ -4,6 +4,83 @@ import physiology from '../../data/physiology-validation.json';
 import policyBundle from '../../data/policy-chronotropic.json';
 import { SHIELD_RULES } from '../../envs/shield.ts';
 
+/** Small two-series line chart for the validation figures. */
+function ValidationChart({
+  series, xLabel, yLabel, zeroLine = false,
+}: {
+  series: { name: string; colour: string; points: { x: number; y: number }[] }[];
+  xLabel: string;
+  yLabel: string;
+  zeroLine?: boolean;
+}) {
+  const W = 340;
+  const H = 215;
+  const padL = 46;
+  const padB = 34;
+  const all = series.flatMap((s) => s.points);
+  if (all.length < 2) return null;
+  const xs = all.map((p) => p.x);
+  const ys = all.map((p) => p.y);
+  const xLo = Math.min(...xs);
+  const xHi = Math.max(...xs);
+  let yLo = Math.min(...ys);
+  let yHi = Math.max(...ys);
+  const padY = (yHi - yLo) * 0.12 || 1;
+  yLo -= padY;
+  yHi += padY;
+  const X = (v: number): number => padL + ((v - xLo) / (xHi - xLo)) * (W - padL - 12);
+  const Y = (v: number): number => H - padB - ((v - yLo) / (yHi - yLo)) * (H - padB - 14);
+  const ticks = [yLo, (yLo + yHi) / 2, yHi];
+
+  return (
+    <figure className="ov-fig">
+      <svg viewBox={`0 0 ${W} ${H}`} className="tr-svg" role="img" aria-label={`${yLabel} against ${xLabel}`}>
+        {ticks.map((t, i) => (
+          <g key={i}>
+            <line x1={padL} y1={Y(t)} x2={W - 12} y2={Y(t)} stroke="rgba(10,10,18,0.08)" />
+            <text x={padL - 7} y={Y(t) + 3.5} textAnchor="end" className="tr-axis">{t.toFixed(1)}</text>
+          </g>
+        ))}
+        {zeroLine && yLo < 0 && yHi > 0 && (
+          <line x1={padL} y1={Y(0)} x2={W - 12} y2={Y(0)} stroke="rgba(10,10,18,0.35)" />
+        )}
+        {[xLo, (xLo + xHi) / 2, xHi].map((t, i) => (
+          <text key={i} x={X(t)} y={H - padB + 15} textAnchor="middle" className="tr-axis">
+            {Math.abs(t) < 10 ? t.toFixed(1) : Math.round(t)}
+          </text>
+        ))}
+        {series.map((se) => (
+          <g key={se.name}>
+            <path
+              d={se.points.map((p, i) => `${i === 0 ? 'M' : 'L'}${X(p.x)},${Y(p.y)}`).join(' ')}
+              fill="none" stroke={se.colour} strokeWidth={1.9}
+            />
+            {se.points.map((p, i) => (
+              <circle key={i} cx={X(p.x)} cy={Y(p.y)} r={2.2} fill={se.colour} />
+            ))}
+          </g>
+        ))}
+        <text x={(W + padL) / 2} y={H - 4} textAnchor="middle" className="tr-axislabel">{xLabel}</text>
+        <text x={11} y={(H - padB) / 2} textAnchor="middle" className="tr-axislabel"
+          transform={`rotate(-90 11 ${(H - padB) / 2})`}>{yLabel}</text>
+      </svg>
+      {series.length > 1 && (
+        <figcaption className="rl-caption">
+          {series.map((se) => (
+            <span key={se.name} style={{ marginRight: 16, whiteSpace: 'nowrap' }}>
+              <span style={{
+                display: 'inline-block', width: 10, height: 2, background: se.colour,
+                verticalAlign: 'middle', marginRight: 6,
+              }} />
+              {se.name}
+            </span>
+          ))}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
 interface AtropineRow {
   label: string;
   expectation: string;
@@ -286,6 +363,51 @@ export function Evidence() {
               </tbody>
             </table>
           </div>
+          <h3 className="tr-h3">Emergent behaviour: the dose-response of the paradoxical effect</h3>
+          <p className="rl-caption">
+            Below roughly half a milligram, atropine transiently slows the heart it is given to
+            speed up. The nadir is the largest fall seen in the four minutes after the dose and the
+            peak is the largest rise; the two cross between 0.3 and 0.5 mg, which is where the
+            clinical threshold sits. The effect is gated on intact innervation in the model,
+            because the decisive human experiment found a surgically decentralised sinus node has
+            no bradycardic phase at all.
+          </p>
+          <div className="ov-figs">
+            <ValidationChart
+              series={[
+                {
+                  name: 'largest fall after the dose',
+                  colour: '#4a5568',
+                  points: physiology.paradoxical.map((r) => ({ x: r.doseMg, y: r.nadirDeltaHr })),
+                },
+                {
+                  name: 'largest rise after the dose',
+                  colour: '#7a1818',
+                  points: physiology.paradoxical.map((r) => ({ x: r.doseMg, y: r.peakDeltaHr })),
+                },
+              ]}
+              xLabel="Intravenous dose (mg)"
+              yLabel="Change in rate (bpm)"
+              zeroLine
+            />
+            <ValidationChart
+              series={[
+                {
+                  name: 'heart rate',
+                  colour: '#7a1818',
+                  points: physiology.ceiling.map((r) => ({ x: r.cumulativeMg, y: r.hr })),
+                },
+              ]}
+              xLabel="Cumulative dose (mg)"
+              yLabel="Heart rate (bpm)"
+            />
+          </div>
+          <p className="rl-caption">
+            On the right, the ceiling. Rate rises steeply to about three milligrams and then
+            essentially stops: full vagal blockade has been reached, and further drug buys
+            anticholinergic toxicity and nothing else. That is the mechanism behind the
+            guideline&rsquo;s maximum total dose, and it is reproduced rather than imposed.
+          </p>
         </div>
       </section>
 
