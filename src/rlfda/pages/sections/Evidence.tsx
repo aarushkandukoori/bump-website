@@ -101,7 +101,7 @@ const GMLP = [
   ['Clinical study participants and data sets representative of the intended population',
     'The virtual population is specified with explicit prevalence weights over conduction lesions and demographic distributions, and the enrolment criterion is stated and its screen failure rate reported.'],
   ['Training data sets independent of test sets',
-    'Training, validation and evaluation cohorts are generated from three disjoint master seeds. The trial cohort took no part in model selection.'],
+    'Training, validation and evaluation cohorts are generated from three disjoint master seeds. The trial cohort took no part in model selection, which matters because the validation cohort is small enough that the selected checkpoint is optimistically estimated on it.'],
   ['Reference datasets based on best available methods',
     'Calibration and validation targets are published reference haemodynamics, fixed in advance, with a third of them withheld from the fit.'],
   ['Model design tailored to the available data and the intended use',

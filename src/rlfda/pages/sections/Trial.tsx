@@ -235,8 +235,13 @@ function LearningCurve() {
         </text>
       </svg>
       <figcaption className="rl-caption">
-        Model selection used the validation cohort only. The policy shipped is the checkpoint with
-        the highest validation return, and the trial cohort below was not involved in that choice.
+        The policy shipped is the checkpoint with the highest return on the validation cohort. That
+        cohort has a few dozen subjects, so the curve is noisy and the selected checkpoint has
+        almost certainly had some luck: its validation return is an optimistic estimate of its own
+        performance, and should not be read as one. This does not touch the trial above. Selection
+        optimism biases the number you selected on, not an evaluation performed afterwards on a
+        cohort drawn from a seed that took no part in the selection — which is the entire reason
+        the three cohorts are kept disjoint.
       </figcaption>
     </figure>
   );
