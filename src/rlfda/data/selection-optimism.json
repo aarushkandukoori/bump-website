@@ -1,0 +1,12 @@
+{
+  "generated": "2026-09-03T06:16:41.734Z",
+  "policyVersion": "A-1000",
+  "selectedAtEpisode": 1000,
+  "selectionCohortReturn": 82.247,
+  "freshCohortSeed": 40041,
+  "freshCohortN": 48,
+  "freshCohortReturn": 81.81424575599098,
+  "freshCohortGuidelineReturn": 74.59323191531026,
+  "selectionOptimism": 0.4327542440090184,
+  "checkpointsEvaluated": 25
+}

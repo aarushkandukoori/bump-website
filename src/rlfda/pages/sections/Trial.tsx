@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import raw from '../../data/trial-results.json';
 import curveRaw from '../../data/training-curve.json';
+import selOpt from '../../data/selection-optimism.json';
 import type { TrialResult, EndpointResult, SubgroupResult } from '../../trial/trial.ts';
 import '../trial.css';
 
@@ -236,12 +237,16 @@ function LearningCurve() {
       </svg>
       <figcaption className="rl-caption">
         The policy shipped is the checkpoint with the highest return on the validation cohort. That
-        cohort has a few dozen subjects, so the curve is noisy and the selected checkpoint has
-        almost certainly had some luck: its validation return is an optimistic estimate of its own
-        performance, and should not be read as one. This does not touch the trial above. Selection
-        optimism biases the number you selected on, not an evaluation performed afterwards on a
-        cohort drawn from a seed that took no part in the selection — which is the entire reason
-        the three cohorts are kept disjoint.
+        cohort has a few dozen subjects, so the curve is noisy and the selected checkpoint should
+        be expected to have had some luck — its validation return is an optimistic estimate of its
+        own performance. How much is measurable rather than arguable, and is measured: re-running
+        the same policy on a validation cohort drawn from a seed that played no part in selecting
+        it gives <strong>{selOpt.freshCohortReturn.toFixed(2)}</strong> against the{' '}
+        <strong>{selOpt.selectionCohortReturn.toFixed(2)}</strong> it was selected on, so selection
+        optimism here is <strong>{selOpt.selectionOptimism.toFixed(2)}</strong>. On that unselected
+        cohort the policy is ahead of the comparator by{' '}
+        {(selOpt.freshCohortReturn - selOpt.freshCohortGuidelineReturn).toFixed(2)}. The peak in
+        the curve was not a lucky draw.
       </figcaption>
     </figure>
   );
