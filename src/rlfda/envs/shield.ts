@@ -52,7 +52,7 @@ export const SHIELD_RULES: ShieldRule[] = [
     provenance:
       'Guideline recommendation Class III: Harm for atropine in transplant recipients without evidence of reinnervation.',
     hazard:
-      'Complete atrioventricular block or sinus arrest, reported in one in five transplant recipients, dose-independent and with no escape rhythm.',
+      'Complete atrioventricular block or sinus arrest, reported in one in five transplant recipients, dose-independent, and in most of those with no escape rhythm appearing before pacing was started.',
   },
   {
     id: 'S2-minimum-dose',

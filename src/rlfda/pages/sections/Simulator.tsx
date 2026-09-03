@@ -500,7 +500,8 @@ export function Simulator() {
           <p className="rl-section__body">
             In a <strong>denervated heart</strong> there is no vagal tone to block, so the drug does
             nothing at all — and in one in five such patients it has been reported to precipitate
-            complete block or sinus arrest with no escape rhythm. That hazard is present in the
+            complete block or sinus arrest, in most of those with no escape rhythm appearing
+            before pacing was started. That hazard is present in the
             evaluation model, it is dose-independent and unpredictable by design, and the only
             defence is the constraint that refuses the drug outright.
           </p>

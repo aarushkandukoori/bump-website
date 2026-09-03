@@ -77,9 +77,9 @@ export interface ConductionParams {
    *
    * In transplant recipients atropine has been observed to produce complete
    * atrioventricular block or sinus arrest - in the reported series, in one
-   * in five patients, with no ventricular escape appearing within ten
-   * seconds in four of the five affected, and with no relationship to dose
-   * and no identifiable predictor. The corresponding guideline
+   * in five patients, with no ventricular escape appearing within ten seconds
+   * in four of the five affected, and with no relationship to dose and no
+   * identifiable predictor. The corresponding guideline
    * recommendation is Class III: Harm.
    *
    * It is modelled as a genuinely unpredictable event because that is what
