@@ -1,0 +1,128 @@
+{
+  "generated": "2026-09-03T04:53:28.825Z",
+  "steps": [
+    4,
+    2,
+    1,
+    0.5
+  ],
+  "productionStepMs": 1,
+  "rows": [
+    {
+      "quantity": "cardiacOutput",
+      "coarse": 4.708097653936158,
+      "medium": 4.700267789742464,
+      "fine": 4.699889728023011,
+      "observedOrder": 4.372293602587149,
+      "orderReliable": false,
+      "gciPercent": 0.0005101365263163847,
+      "richardson": 4.699908908706371
+    },
+    {
+      "quantity": "strokeVolume",
+      "coarse": 78.46443578120531,
+      "medium": 78.34151767125934,
+      "fine": 78.33273545128614,
+      "observedOrder": 3.8069680074344983,
+      "orderReliable": false,
+      "gciPercent": 0.0010783335374907276,
+      "richardson": 78.3334112018119
+    },
+    {
+      "quantity": "map",
+      "coarse": 88.67642295329513,
+      "medium": 88.675405537043,
+      "fine": 88.67865744645266,
+      "observedOrder": null,
+      "orderReliable": false,
+      "gciPercent": 0.00030558925744706523,
+      "richardson": 88.67844065249201
+    },
+    {
+      "quantity": "systolic",
+      "coarse": 98.1781566913632,
+      "medium": 98.14852585879258,
+      "fine": 98.12977437172188,
+      "observedOrder": 0.6600941520374571,
+      "orderReliable": false,
+      "gciPercent": 0.041169716201401765,
+      "richardson": 98.16209417141621
+    },
+    {
+      "quantity": "diastolic",
+      "coarse": 78.33511400168062,
+      "medium": 78.4033660178045,
+      "fine": 78.41262619838437,
+      "observedOrder": 2.881759430598397,
+      "orderReliable": false,
+      "gciPercent": 0.0023172399942246315,
+      "richardson": 78.41117259139654
+    },
+    {
+      "quantity": "edv",
+      "coarse": 129.74501579231878,
+      "medium": 129.70794699627058,
+      "fine": 129.6679210371818,
+      "observedOrder": -0.11073071369177068,
+      "orderReliable": false,
+      "gciPercent": 0.002572337525003751,
+      "richardson": 129.67058943445437
+    },
+    {
+      "quantity": "esv",
+      "coarse": 51.3082653429464,
+      "medium": 51.361350912908925,
+      "fine": 51.333789640979816,
+      "observedOrder": null,
+      "orderReliable": false,
+      "gciPercent": 0.004474192684433264,
+      "richardson": 51.335627059108425
+    },
+    {
+      "quantity": "cvp",
+      "coarse": 5.804032005296975,
+      "medium": 5.809408490113319,
+      "fine": 5.811972661694733,
+      "observedOrder": 1.068170433761026,
+      "orderReliable": true,
+      "gciPercent": 0.05028250723345481,
+      "richardson": 5.809634737235514
+    },
+    {
+      "quantity": "pcwp",
+      "coarse": 10.05299035758965,
+      "medium": 10.051428116132687,
+      "fine": 10.04753978959195,
+      "observedOrder": -1.3155319304000783,
+      "orderReliable": false,
+      "gciPercent": 0.0032249408164949445,
+      "richardson": 10.047799011361333
+    },
+    {
+      "quantity": "meanPa",
+      "coarse": 15.02415765865115,
+      "medium": 15.010723773257793,
+      "fine": 15.008150154971846,
+      "observedOrder": 2.3840066293941913,
+      "orderReliable": false,
+      "gciPercent": 0.005079612781656855,
+      "richardson": 15.008760039702695
+    },
+    {
+      "quantity": "strokeWork",
+      "coarse": 7074.791816846681,
+      "medium": 7064.069285591034,
+      "fine": 7063.208940070409,
+      "observedOrder": 3.639585538787069,
+      "orderReliable": false,
+      "gciPercent": 0.0013282523285426675,
+      "richardson": 7063.283993860182
+    }
+  ],
+  "worstGciPercent": 0.05028250723345481,
+  "conservation": {
+    "seconds": 900,
+    "driftMl": -1.1323209037072957e-10,
+    "initialMl": 2599.9999999999995
+  }
+}

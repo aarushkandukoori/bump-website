@@ -1,0 +1,24 @@
+{
+  "generated": "2026-09-03T04:57:41.757Z",
+  "baseline": {
+    "guidelineReturn": 76.75628703042504,
+    "guidelineTimeInTarget": 0.7644483287544408,
+    "guidelineArrestRate": 0.21875
+  },
+  "curve": [
+    {
+      "episode": 100,
+      "envSteps": 6951,
+      "trainReturn": 70.19015501568981,
+      "validReturn": 66.76285217350993,
+      "validTimeInTarget": 0.733461923076791,
+      "validArrestRate": 0.28125,
+      "validShieldRate": 0.08660714285714285,
+      "loss": 7.232301611909549,
+      "qMean": 95.95138215974244,
+      "conservativeGap": 1.803682386444444,
+      "epsilonGuideline": 0.5845146023777459,
+      "epsilonRandom": 0.21775992667136998
+    }
+  ]
+}

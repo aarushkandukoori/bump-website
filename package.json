@@ -7,7 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build && node scripts/spa-fallback.mjs",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "calibrate": "node verification/calibrate.ts && node verification/refineRate.ts && node verification/bake.ts",
+    "verify": "node verification/report.ts",
+    "verify:grid": "node verification/solutionVerification.ts",
+    "verify:phys": "node verification/physiology.ts",
+    "train": "node tools/train.ts",
+    "trial": "node tools/trial.ts",
+    "verify:stats": "node verification/statsCheck.ts",
+    "verify:all": "npm run verify && npm run verify:grid && npm run verify:stats && node verification/livePathParity.ts"
   },
   "dependencies": {
     "framer-motion": "^12.41.0",

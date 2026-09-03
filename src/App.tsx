@@ -6,6 +6,10 @@ const DemoPage = lazy(() =>
   import('./pages/DemoPage').then((m) => ({ default: m.DemoPage })),
 );
 
+const RlFdaPage = lazy(() =>
+  import('./rlfda/pages/RlFdaPage').then((m) => ({ default: m.RlFdaPage })),
+);
+
 function DemoFallback() {
   return (
     <div
@@ -43,6 +47,25 @@ export default function App() {
             </Suspense>
           }
         />
+        {/*
+          The regulatory-simulation programme. GitHub Pages serves paths
+          case-sensitively, so the lower-case spelling is redirected rather
+          than left to the catch-all, which would silently send a shared link
+          back to the home page.
+        */}
+        {['/RL-FDA-Approval', '/RL-FDA-Approval/', '/RL-FDA-Approval/:section'].map((path) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <Suspense fallback={<DemoFallback />}>
+                <RlFdaPage />
+              </Suspense>
+            }
+          />
+        ))}
+        <Route path="/rl-fda-approval" element={<Navigate to="/RL-FDA-Approval" replace />} />
+        <Route path="/rl-fda-approval/*" element={<Navigate to="/RL-FDA-Approval" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

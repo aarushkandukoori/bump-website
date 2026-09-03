@@ -1,0 +1,395 @@
+{
+  "generated": "2026-09-03T04:50:12.124Z",
+  "rateResponse": [
+    {
+      "rate": 30,
+      "co": 2.7777802038657735,
+      "sv": 89.02022356040888,
+      "map": 72.97977358298084
+    },
+    {
+      "rate": 35,
+      "co": 3.122092854580076,
+      "sv": 86.72854220576828,
+      "map": 77.00737677764874
+    },
+    {
+      "rate": 40,
+      "co": 3.4528847967761305,
+      "sv": 84.55283784604848,
+      "map": 80.16757810928061
+    },
+    {
+      "rate": 45,
+      "co": 3.7112938075934596,
+      "sv": 82.83988546052818,
+      "map": 82.81043169601364
+    },
+    {
+      "rate": 50,
+      "co": 3.9234315677743083,
+      "sv": 81.26672904754953,
+      "map": 85.1191667894558
+    },
+    {
+      "rate": 60,
+      "co": 4.73232400555051,
+      "sv": 78.73795470522927,
+      "map": 88.71437669263629
+    },
+    {
+      "rate": 70,
+      "co": 5.374936021871236,
+      "sv": 77.0571631862476,
+      "map": 91.64265590134133
+    },
+    {
+      "rate": 80,
+      "co": 6.209703138519192,
+      "sv": 76.13384610825594,
+      "map": 94.24021184001953
+    },
+    {
+      "rate": 90,
+      "co": 6.853155139716272,
+      "sv": 75.4547761439997,
+      "map": 96.41389843125435
+    },
+    {
+      "rate": 100,
+      "co": 7.384639988883975,
+      "sv": 74.90090641783048,
+      "map": 98.50429390068378
+    },
+    {
+      "rate": 120,
+      "co": 8.758389139131406,
+      "sv": 72.94412569604084,
+      "map": 101.72161580417689
+    },
+    {
+      "rate": 140,
+      "co": 9.693245991223668,
+      "sv": 69.57382572523493,
+      "map": 103.95778710326661
+    }
+  ],
+  "avSynchrony": [
+    {
+      "avDelayMs": 40,
+      "sv": 68.79166263009262,
+      "co": 4.133108778557749
+    },
+    {
+      "avDelayMs": 80,
+      "sv": 73.21082251056372,
+      "co": 4.400453152672652
+    },
+    {
+      "avDelayMs": 120,
+      "sv": 76.69763217618501,
+      "co": 4.610119896752575
+    },
+    {
+      "avDelayMs": 160,
+      "sv": 78.73795470522927,
+      "co": 4.73232400555051
+    },
+    {
+      "avDelayMs": 200,
+      "sv": 78.96310536730375,
+      "co": 4.746033214296049
+    },
+    {
+      "avDelayMs": 260,
+      "sv": 78.83302370969464,
+      "co": 4.738565319904711
+    },
+    {
+      "avDelayMs": 320,
+      "sv": 78.67251860226891,
+      "co": 4.7292428562920925
+    },
+    {
+      "avDelayMs": 400,
+      "sv": 78.3849200581841,
+      "co": 4.712204162897318
+    }
+  ],
+  "atropineByPhenotype": [
+    {
+      "phenotype": "vagal_sinus_bradycardia",
+      "label": "Vagally mediated sinus bradycardia",
+      "expectation": "responsive",
+      "baselineHr": 59.46463120370758,
+      "afterHr": 75.65876256038675,
+      "deltaHr": 16.194131356679158,
+      "baselineMap": 80.71660185625181,
+      "afterMap": 87.63355695357848,
+      "responderRate": 1,
+      "worsenedRate": 0,
+      "n": 40
+    },
+    {
+      "phenotype": "sinus_node_dysfunction",
+      "label": "Sinus node dysfunction",
+      "expectation": "partial",
+      "baselineHr": 53.776323980364566,
+      "afterHr": 60.05906825634454,
+      "deltaHr": 6.282744275979974,
+      "baselineMap": 76.97228776424159,
+      "afterMap": 79.90708049211999,
+      "responderRate": 0.025,
+      "worsenedRate": 0,
+      "n": 40
+    },
+    {
+      "phenotype": "av_block_nodal",
+      "label": "Second-degree AV block, nodal (Mobitz I)",
+      "expectation": "responsive",
+      "baselineHr": 44.9880068603798,
+      "afterHr": 53.16613769708094,
+      "deltaHr": 8.178130836701143,
+      "baselineMap": 65.36423507793862,
+      "afterMap": 68.04647308356968,
+      "responderRate": 0.525,
+      "worsenedRate": 0.1,
+      "n": 40
+    },
+    {
+      "phenotype": "av_block_infranodal",
+      "label": "Second-degree AV block, infranodal (Mobitz II)",
+      "expectation": "harmful",
+      "baselineHr": 40.19746195264188,
+      "afterHr": 37.953191270798115,
+      "deltaHr": -2.244270681843761,
+      "baselineMap": 67.70960420550594,
+      "afterMap": 66.45683059403414,
+      "responderRate": 0,
+      "worsenedRate": 0.325,
+      "n": 40
+    },
+    {
+      "phenotype": "complete_block_junctional",
+      "label": "Complete AV block, junctional escape",
+      "expectation": "partial",
+      "baselineHr": 50.15675384714528,
+      "afterHr": 54.15925924692863,
+      "deltaHr": 4.002505399783348,
+      "baselineMap": 74.66464988136694,
+      "afterMap": 77.0413600858402,
+      "responderRate": 0,
+      "worsenedRate": 0,
+      "n": 40
+    },
+    {
+      "phenotype": "complete_block_ventricular",
+      "label": "Complete AV block, ventricular escape",
+      "expectation": "unresponsive",
+      "baselineHr": 32.528527142008414,
+      "afterHr": 32.97435674681877,
+      "deltaHr": 0.4458296048103591,
+      "baselineMap": 60.41770315243407,
+      "afterMap": 61.53442938943023,
+      "responderRate": 0,
+      "worsenedRate": 0,
+      "n": 40
+    },
+    {
+      "phenotype": "beta_blocker_toxicity",
+      "label": "Beta-blocker or calcium-channel-blocker effect",
+      "expectation": "partial",
+      "baselineHr": 45.09637538832796,
+      "afterHr": 50.61831417180764,
+      "deltaHr": 5.521938783479686,
+      "baselineMap": 64.3875196136521,
+      "afterMap": 68.35401721576389,
+      "responderRate": 0,
+      "worsenedRate": 0,
+      "n": 40
+    },
+    {
+      "phenotype": "post_transplant_denervated",
+      "label": "Denervated (transplanted) heart",
+      "expectation": "unresponsive",
+      "baselineHr": 62.489336302047924,
+      "afterHr": 53.93664966218046,
+      "deltaHr": -8.552686639867465,
+      "baselineMap": 74.88447457377917,
+      "afterMap": 63.580181324203544,
+      "responderRate": 0,
+      "worsenedRate": 0.325,
+      "n": 40
+    },
+    {
+      "phenotype": "post_tavr_conduction",
+      "label": "New conduction disturbance after aortic valve intervention",
+      "expectation": "unresponsive",
+      "baselineHr": 36.26736016886109,
+      "afterHr": 35.560276745388954,
+      "deltaHr": -0.707083423472136,
+      "baselineMap": 61.54109774050958,
+      "afterMap": 61.560143317865084,
+      "responderRate": 0,
+      "worsenedRate": 0.15,
+      "n": 40
+    }
+  ],
+  "paradoxical": [
+    {
+      "doseMg": 0.1,
+      "nadirDeltaHr": -15.862817044351813,
+      "peakDeltaHr": -4.315342395912683
+    },
+    {
+      "doseMg": 0.2,
+      "nadirDeltaHr": -14.187377449928208,
+      "peakDeltaHr": -0.6972590374656088
+    },
+    {
+      "doseMg": 0.3,
+      "nadirDeltaHr": -11.654819122103737,
+      "peakDeltaHr": 3.369147929094924
+    },
+    {
+      "doseMg": 0.5,
+      "nadirDeltaHr": -6.365200745319181,
+      "peakDeltaHr": 10.75520050580672
+    },
+    {
+      "doseMg": 1,
+      "nadirDeltaHr": 0.384978193723778,
+      "peakDeltaHr": 21.643657738205718
+    },
+    {
+      "doseMg": 2,
+      "nadirDeltaHr": 1.916301274387515,
+      "peakDeltaHr": 31.373949834986416
+    }
+  ],
+  "ceiling": [
+    {
+      "cumulativeMg": 0,
+      "hr": 60.231783557860034
+    },
+    {
+      "cumulativeMg": 0.5,
+      "hr": 61.57419066903096
+    },
+    {
+      "cumulativeMg": 1,
+      "hr": 72.21883517082729
+    },
+    {
+      "cumulativeMg": 1.5,
+      "hr": 81.17632761829987
+    },
+    {
+      "cumulativeMg": 2,
+      "hr": 87.42522359390496
+    },
+    {
+      "cumulativeMg": 2.5,
+      "hr": 91.26568133221082
+    },
+    {
+      "cumulativeMg": 3,
+      "hr": 93.8061065265346
+    },
+    {
+      "cumulativeMg": 4,
+      "hr": 96.50963960189524
+    },
+    {
+      "cumulativeMg": 5,
+      "hr": 98.48207099806518
+    }
+  ],
+  "baroreflexStep": [
+    {
+      "second": -25,
+      "hr": 74.6797557889787,
+      "map": 93.58003990405953
+    },
+    {
+      "second": -20,
+      "hr": 65.54951038392838,
+      "map": 87.69438441425325
+    },
+    {
+      "second": -15,
+      "hr": 70.74697586613156,
+      "map": 95.6712261201414
+    },
+    {
+      "second": -10,
+      "hr": 70.83440991114577,
+      "map": 89.82128828171741
+    },
+    {
+      "second": -5,
+      "hr": 64.85890044487206,
+      "map": 91.00795683477328
+    },
+    {
+      "second": 0,
+      "hr": 81.90968601669991,
+      "map": 85.7916013174448
+    },
+    {
+      "second": 5,
+      "hr": 75.38045073333153,
+      "map": 84.51542569097285
+    },
+    {
+      "second": 10,
+      "hr": 80.74889909734604,
+      "map": 88.44081488532014
+    },
+    {
+      "second": 15,
+      "hr": 76.51096825943765,
+      "map": 83.99070910629094
+    },
+    {
+      "second": 20,
+      "hr": 74.31401061433176,
+      "map": 84.91773476494167
+    },
+    {
+      "second": 25,
+      "hr": 79.9401306091692,
+      "map": 88.38846284939363
+    },
+    {
+      "second": 30,
+      "hr": 77.20237492855046,
+      "map": 84.33488019937599
+    },
+    {
+      "second": 35,
+      "hr": 74.748164332387,
+      "map": 86.09764092816887
+    },
+    {
+      "second": 40,
+      "hr": 79.42489975577631,
+      "map": 87.83463560276874
+    },
+    {
+      "second": 45,
+      "hr": 75.73396977030238,
+      "map": 83.8838331511714
+    },
+    {
+      "second": 50,
+      "hr": 74.6085581126484,
+      "map": 86.47027890509902
+    },
+    {
+      "second": 55,
+      "hr": 79.8690777128864,
+      "map": 87.52454726926213
+    }
+  ]
+}

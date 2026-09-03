@@ -17,8 +17,24 @@ if (!existsSync(index)) {
 
 copyFileSync(index, join(dist, '404.html'));
 
-const demoDir = join(dist, 'demo');
-mkdirSync(demoDir, { recursive: true });
-copyFileSync(index, join(demoDir, 'index.html'));
+/*
+ * Every client-side route also gets a real directory index, so the server
+ * answers 200 rather than falling through to 404.html. That matters for
+ * shared links and for anything that reads the status code.
+ */
+const routes = [
+  'demo',
+  'RL-FDA-Approval',
+  'RL-FDA-Approval/simulator',
+  'RL-FDA-Approval/trial',
+  'RL-FDA-Approval/evidence',
+  'RL-FDA-Approval/methods',
+];
 
-console.log('spa-fallback: wrote dist/404.html and dist/demo/index.html');
+for (const route of routes) {
+  const dir = join(dist, route);
+  mkdirSync(dir, { recursive: true });
+  copyFileSync(index, join(dir, 'index.html'));
+}
+
+console.log(`spa-fallback: wrote dist/404.html and ${routes.length} route indexes`);

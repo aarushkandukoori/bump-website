@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -37,6 +37,39 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+  # Re-executes the model verification suite on every push. It does not gate
+  # deployment: the published numbers are committed artefacts, and this job
+  # exists to catch the case where the code and those artefacts have drifted
+  # apart. A failure here means the site is claiming something the code no
+  # longer produces.
+  verify-model:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Steady-state validation
+        run: npm run verify
+
+      - name: Solution verification and conservation
+        run: npm run verify:grid
+
+      - name: Live and batch execution parity
+        run: node verification/livePathParity.ts
+
+      - name: Trial statistics
+        run: npm run verify:stats
 
   deploy:
     environment:
