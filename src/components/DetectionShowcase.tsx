@@ -61,13 +61,14 @@ export function DetectionShowcase() {
           ))}
         </motion.div>
 
-        <motion.div
-          className="detection-showcase__rl"
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
+        {/*
+          Deliberately not scroll-animated. Every other block on this page
+          fades in on intersection, which is fine for decoration; this one is
+          the entry point to the regulatory programme, and an entry point that
+          depends on an IntersectionObserver firing is an entry point that can
+          fail to appear. It renders unconditionally.
+        */}
+        <div className="detection-showcase__rl">
           <div className="detection-showcase__rl-text">
             <span className="detection-showcase__rl-label">New programme</span>
             <h3 className="detection-showcase__rl-title">
@@ -84,7 +85,7 @@ export function DetectionShowcase() {
             Open the programme
             <ArrowIcon />
           </Link>
-        </motion.div>
+        </div>
 
         <motion.div
           className="detection-showcase__footer"
