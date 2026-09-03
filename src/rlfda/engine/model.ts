@@ -162,21 +162,25 @@ export const INITIAL_VOLUME_FRACTION = [
  * Rate-dependent contractility: the force-frequency (Bowditch) relation.
  *
  * Myocardial force development depends on stimulation rate through
- * frequency-dependent calcium loading. In human myocardium the relation rises
- * to a peak somewhere around 150-170 min^-1; at a normal resting rate the
- * muscle is developing only about 57 per cent of that peak, and at profoundly
- * slow rates around 15 min^-1 only about 47 per cent.
+ * frequency-dependent calcium loading: force falls at very slow rates and
+ * rises with rate to a peak well above the resting rate. That direction is
+ * uncontroversial. The specific slope used here is not traceable to a source
+ * this project verified, and is therefore treated as a declared modelling
+ * assumption rather than as a fitted literature value.
  *
- * This matters here more than it would in most models. A model that holds
- * end-systolic elastance fixed while the rate falls lets the Frank-Starling
- * mechanism compensate without limit, and therefore over-predicts stroke
- * volume at exactly the rates this platform exists to reason about. Including
- * the relation is the difference between a bradycardia that looks survivable
- * and one that behaves the way the clinical literature describes.
+ * It matters because a model that holds end-systolic elastance fixed while
+ * the rate falls lets the Frank-Starling mechanism compensate without limit,
+ * and so over-predicts stroke volume at exactly the rates this platform
+ * exists to reason about. Omitting the relation is not the neutral choice;
+ * it is a different assumption with a larger error in the same direction.
  *
- * The form is a two-slope logarithmic fit through the published anchors,
- * normalised to unity at 72 min^-1. It is phenomenological, and is recorded
- * as such in the model credibility record.
+ * The form is a two-slope logarithmic curve, normalised to unity at 72 min^-1
+ * so that the calibration operating point is unaffected by construction. The
+ * sensitivity study in verification/ffrSensitivity.ts sweeps the slope from
+ * absent to twice nominal and reports the influence on every quantity the
+ * platform depends on: under one per cent at the calibration point, and about
+ * seven per cent on cardiac output at 40 min^-1. That bound is published in
+ * the credibility record rather than being hidden behind a citation.
  */
 export function forceFrequencyFactor(rateBpm: number): number {
   const hr = Math.min(Math.max(rateBpm, 12), 200);

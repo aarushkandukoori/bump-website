@@ -88,8 +88,11 @@ export function doubleHillDriver(tSinceOnset: number, systoleDur: number): numbe
  *
  *   Ts = k * sqrt(RR), k ~ 0.30 s^(1/2)
  *
- * At RR = 0.833 s (72 bpm) this gives 274 ms, consistent with measured
- * left-ventricular ejection plus isovolumic times in normal adults.
+ * At RR = 0.833 s (72 bpm) this gives 274 ms, which is the right order for
+ * mechanical systole in a normal adult. The coefficient is a modelling choice
+ * rather than a fitted literature value; its effect is absorbed by the
+ * calibration, which is performed with it in place and validated against
+ * eighteen independent haemodynamic quantities.
  */
 export function systoleDuration(rrSeconds: number, k = 0.3): number {
   const rr = Math.min(Math.max(rrSeconds, 0.25), 3.0);

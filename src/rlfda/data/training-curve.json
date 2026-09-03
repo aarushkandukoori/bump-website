@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-03T04:57:41.757Z",
+  "generated": "2026-09-03T05:03:44.177Z",
   "baseline": {
     "guidelineReturn": 76.75628703042504,
     "guidelineTimeInTarget": 0.7644483287544408,
@@ -19,6 +19,34 @@
       "conservativeGap": 1.803682386444444,
       "epsilonGuideline": 0.5845146023777459,
       "epsilonRandom": 0.21775992667136998
+    },
+    {
+      "episode": 200,
+      "envSteps": 13292,
+      "trainReturn": 61.39354134301711,
+      "validReturn": 72.73784303169313,
+      "validTimeInTarget": 0.7419454059827735,
+      "validArrestRate": 0.28125,
+      "validShieldRate": 0.02106227106227106,
+      "loss": 3.4839417398877326,
+      "qMean": 49.43646856119536,
+      "conservativeGap": 1.7956811497671215,
+      "epsilonGuideline": 0.526279975319349,
+      "epsilonRandom": 0.18998821165895072
+    },
+    {
+      "episode": 300,
+      "envSteps": 20595,
+      "trainReturn": 82.67144401150153,
+      "validReturn": 72.52590596674027,
+      "validTimeInTarget": 0.7434894536018203,
+      "validArrestRate": 0.28125,
+      "validShieldRate": 0.017170329670329672,
+      "loss": 0.5462933752603066,
+      "qMean": 43.263304690940565,
+      "conservativeGap": 2.106025307053965,
+      "epsilonGuideline": 0.475044666283542,
+      "epsilonRandom": 0.16632423235139762
     }
   ]
 }

@@ -2,6 +2,7 @@ import validation from '../../data/validation.json';
 import solution from '../../data/solution-verification.json';
 import physiology from '../../data/physiology-validation.json';
 import policyBundle from '../../data/policy-chronotropic.json';
+import ffr from '../../data/ffr-sensitivity.json';
 import { SHIELD_RULES } from '../../envs/shield.ts';
 
 /** Small two-series line chart for the validation figures. */
@@ -590,6 +591,15 @@ export function Evidence() {
         <div className="rl__inner rl__inner--narrow">
           <span className="rl-section__label">Limitations</span>
           <h2 className="rl-section__title">Recorded assumptions and what they cost</h2>
+          <div className="rl-note">
+            <strong>The standard applied here.</strong> Where a constant traces to a source this
+            project fetched and read, it is cited in the code. Where it does not — because the
+            source is paywalled, because the primary literature does not report the quantity, or
+            because a claimed provenance could not be confirmed — the constant is declared as a
+            modelling assumption and its influence on the reported quantities is measured and
+            published, rather than being given a citation it has not earned. A credibility record
+            that only lists the parameters with good provenance is not a credibility record.
+          </div>
           <p className="rl-section__body">
             <strong>The baroreflex acts on filtered mean pressure.</strong> Real baroreceptors fire
             in bursts synchronised to the pulse. Driving the afferent sigmoid with the raw
@@ -621,6 +631,47 @@ export function Evidence() {
             such a stratification from the underlying anatomy, and the aggregate response rate it
             yields is consistent with unselected prehospital series — but the stratification itself
             is a prediction of the model, not a validation of it.
+          </p>
+          <p className="rl-section__body">
+            <strong>The rate-dependent contractility slope is an assumption, and its influence is
+            bounded rather than argued.</strong> That myocardial force depends on stimulation rate
+            is not in doubt; the particular slope used here is not traceable to a source this
+            project verified, so it is declared as an assumption and its influence is measured
+            instead. Sweeping it from absent to twice the nominal value moves cardiac output by{' '}
+            <strong>{ffr.restSpreadPercent.toFixed(2)}%</strong> at the calibration operating point
+            — which is why the steady-state validation above is effectively independent of it — and
+            by <strong>{ffr.slowSpreadPercent.toFixed(1)}%</strong> at forty beats per minute, which
+            is the bound that matters for the bradycardia argument. Omitting the term is not the
+            neutral alternative: it is the &ldquo;absent&rdquo; column of that sweep, and it errs
+            in the same direction, further.
+          </p>
+          <div className="rl-tablewrap">
+            <table className="rl-table">
+              <thead>
+                <tr>
+                  <th>Paced rate</th>
+                  {ffr.scales.map((sc) => (
+                    <th key={sc.label} className="rl-num">{sc.label}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {ffr.rows.map((r) => (
+                  <tr key={r.rate}>
+                    <td>{r.rate} bpm</td>
+                    {ffr.scales.map((sc) => (
+                      <td key={sc.label} className="rl-num">
+                        {(r.values as Record<string, number>)[sc.label].toFixed(3)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="rl-caption">
+            Cardiac output in L/min. Normalisation at 72 per minute is why the columns converge at
+            the resting rate and diverge at the extremes.
           </p>
           <p className="rl-section__body">
             <strong>Human factors are not addressed.</strong> The controller is evaluated in

@@ -1,0 +1,70 @@
+{
+  "generated": "2026-09-03T05:03:54.243Z",
+  "scales": [
+    {
+      "label": "absent",
+      "scale": 0
+    },
+    {
+      "label": "half nominal",
+      "scale": 0.5
+    },
+    {
+      "label": "nominal",
+      "scale": 1
+    },
+    {
+      "label": "double nominal",
+      "scale": 2
+    }
+  ],
+  "rows": [
+    {
+      "rate": 30,
+      "values": {
+        "absent": 2.871630429614394,
+        "half nominal": 2.827135498960494,
+        "nominal": 2.7777802038657735,
+        "double nominal": 2.6933206869546398
+      }
+    },
+    {
+      "rate": 40,
+      "values": {
+        "absent": 3.5657253441467276,
+        "half nominal": 3.5113963783233797,
+        "nominal": 3.4528847967761305,
+        "double nominal": 3.320517968994065
+      }
+    },
+    {
+      "rate": 50,
+      "values": {
+        "absent": 4.035819785641521,
+        "half nominal": 3.9811871849461116,
+        "nominal": 3.9234315677743083,
+        "double nominal": 3.797182405923518
+      }
+    },
+    {
+      "rate": 70,
+      "values": {
+        "absent": 5.396964682947135,
+        "half nominal": 5.386039683032553,
+        "nominal": 5.374936021871236,
+        "double nominal": 5.352794575310598
+      }
+    },
+    {
+      "rate": 100,
+      "values": {
+        "absent": 6.827486398874985,
+        "half nominal": 7.120244695176848,
+        "nominal": 7.384639988883975,
+        "double nominal": 7.838315482545336
+      }
+    }
+  ],
+  "restSpreadPercent": 0.821779225962951,
+  "slowSpreadPercent": 7.101522048508721
+}
