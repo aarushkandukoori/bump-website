@@ -87,6 +87,16 @@ export interface TrialResult {
   subgroups: SubgroupResult[];
   /** Per-subject paired values for the primary endpoint, for plotting. */
   primaryPairs: { policy: number; guideline: number; phenotype: string }[];
+  /**
+   * The constraint set acting alone, with a controller that proposes nothing.
+   * The floor against which both other arms should be read.
+   */
+  nullArm: {
+    primaryMean: number;
+    arrests: number;
+    differenceFromPolicy: Estimate;
+    differenceFromGuideline: Estimate;
+  };
   safety: {
     arrestPolicy: number;
     arrestGuideline: number;
@@ -194,6 +204,30 @@ export function runPolicyArm(subject: VirtualSubject, policy: Policy): { m: Epis
   return { m: env.metrics(), reward, env };
 }
 
+/**
+ * Run one subject under the constraint set alone.
+ *
+ * The controller proposes nothing at every decision; the safety shield is the
+ * only thing that can act. This is the floor, and it is the arm a reviewer
+ * asks for as soon as they understand the architecture: if a policy that does
+ * nothing scores nearly what the learned policy scores, then the constraints
+ * are doing the work and the learned component is decoration.
+ *
+ * It costs a third more runtime and it is the most informative third.
+ */
+export function runNullArm(subject: VirtualSubject): { m: EpisodeMetrics; reward: number } {
+  const env = new ChronotropicEnv(subject, { mode: 'evaluation', useShield: true });
+  env.reset();
+  let reward = 0;
+  let done = false;
+  while (!done) {
+    const r = env.step(0);
+    reward += r.reward;
+    done = r.done;
+  }
+  return { m: env.metrics(), reward };
+}
+
 /** Run one subject under the guideline comparator. */
 export function runGuidelineArm(subject: VirtualSubject): { m: EpisodeMetrics; reward: number; env: ChronotropicEnv } {
   const env = new ChronotropicEnv(subject, { mode: 'evaluation', useShield: true });
@@ -231,6 +265,7 @@ export async function runTrial(policy: Policy, opts: TrialOptions = {}): Promise
 
   const policyArm: ArmResult = { metrics: [], totalReward: [] };
   const guidelineArm: ArmResult = { metrics: [], totalReward: [] };
+  const nullArm: ArmResult = { metrics: [], totalReward: [] };
   const shieldCounts = new Map<string, number>();
   let shieldProposals = 0;
   let shieldTotal = 0;
@@ -239,10 +274,13 @@ export async function runTrial(policy: Policy, opts: TrialOptions = {}): Promise
     const s = cohort.enrolled[i];
     const p = runPolicyArm(s, policy);
     const g = runGuidelineArm(s);
+    const z = runNullArm(s);
     policyArm.metrics.push(p.m);
     policyArm.totalReward.push(p.reward);
     guidelineArm.metrics.push(g.m);
     guidelineArm.totalReward.push(g.reward);
+    nullArm.metrics.push(z.m);
+    nullArm.totalReward.push(z.reward);
     shieldProposals += p.env.shieldLog.proposals;
     shieldTotal += p.env.shieldLog.total;
     for (const [k, v] of p.env.shieldLog.counts) {
@@ -340,6 +378,16 @@ export async function runTrial(policy: Policy, opts: TrialOptions = {}): Promise
       guideline: primary.get(guidelineArm.metrics[i]),
       phenotype: PHENOTYPE_BY_ID[s.phenotype].label,
     })),
+    nullArm: {
+      primaryMean: mean(nullArm.metrics.map(primary.get)),
+      arrests: nullArm.metrics.filter((m) => m.arrest).length,
+      differenceFromPolicy: pairedDifference(
+        policyArm.metrics.map(primary.get), nullArm.metrics.map(primary.get), 8801,
+      ),
+      differenceFromGuideline: pairedDifference(
+        guidelineArm.metrics.map(primary.get), nullArm.metrics.map(primary.get), 8802,
+      ),
+    },
     safety: {
       arrestPolicy: arrestP.filter(Boolean).length,
       arrestGuideline: arrestG.filter(Boolean).length,

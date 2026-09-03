@@ -397,9 +397,14 @@ export function Trial() {
               <div className="tr-design">
                 <dl>
                   <dt>Design</dt>
-                  <dd>Paired within-subject crossover; both arms per subject</dd>
+                  <dd>Paired within-subject crossover; all three arms run per subject</dd>
                   <dt>Comparator</dt>
                   <dd>Deterministic implementation of the 2020 adult bradycardia algorithm</dd>
+                  <dt>Control arm</dt>
+                  <dd>
+                    The constraint set acting alone, with a controller that proposes nothing — the
+                    floor both other arms are read against
+                  </dd>
                   <dt>Population</dt>
                   <dd>
                     Symptomatic bradycardia with haemodynamic compromise: rate under 55 with either
@@ -500,6 +505,36 @@ export function Trial() {
                 </div>
               </div>
               <p className="rl-section__body">{interpretPrimary(primary)}</p>
+              {result.nullArm && result.nullArm.differenceFromPolicy.n > 0 && (
+                <>
+                  <h3 className="tr-h3">The floor: the constraint set acting alone</h3>
+                  <p className="rl-section__body">
+                    A third arm runs every subject with a controller that proposes nothing at all,
+                    leaving the ten deterministic constraints as the only thing that can act. It
+                    reached <strong>{fmt(result.nullArm.primaryMean, 1)}%</strong> time in target
+                    with <strong>{result.nullArm.arrests}</strong> arrests. Against that floor the
+                    learned controller adds{' '}
+                    <strong>
+                      {fmt(result.nullArm.differenceFromPolicy.estimate, 1)} points
+                    </strong>{' '}
+                    ({fmt(result.nullArm.differenceFromPolicy.low, 1)} to{' '}
+                    {fmt(result.nullArm.differenceFromPolicy.high, 1)}) and the guideline algorithm
+                    adds{' '}
+                    <strong>
+                      {fmt(result.nullArm.differenceFromGuideline.estimate, 1)} points
+                    </strong>{' '}
+                    ({fmt(result.nullArm.differenceFromGuideline.low, 1)} to{' '}
+                    {fmt(result.nullArm.differenceFromGuideline.high, 1)}).
+                  </p>
+                  <p className="rl-section__body">
+                    This is the arm a reviewer asks for once they understand the architecture, and
+                    it is the one most likely to be left out. If a controller that does nothing
+                    scores nearly what the learned controller scores, the constraints are doing the
+                    work and the learned component is decoration. Reporting the number settles the
+                    question rather than inviting it.
+                  </p>
+                </>
+              )}
               <PairedScatter pairs={result.primaryPairs} unit={primary.unit} />
             </div>
           </section>

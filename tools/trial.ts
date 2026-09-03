@@ -51,6 +51,14 @@ console.log(
     `(95% CI ${primary.difference.low.toFixed(2)} to ${primary.difference.high.toFixed(2)}), ` +
     `p = ${primary.wilcoxonP.toExponential(2)}`,
 );
+console.log(
+  `\nConstraint set alone (controller proposes nothing): ${result.nullArm.primaryMean.toFixed(2)} ${primary.unit}, ` +
+    `${result.nullArm.arrests} arrests\n` +
+    `  learned adds   ${result.nullArm.differenceFromPolicy.estimate.toFixed(2)} ` +
+    `[${result.nullArm.differenceFromPolicy.low.toFixed(2)}, ${result.nullArm.differenceFromPolicy.high.toFixed(2)}]\n` +
+    `  guideline adds ${result.nullArm.differenceFromGuideline.estimate.toFixed(2)} ` +
+    `[${result.nullArm.differenceFromGuideline.low.toFixed(2)}, ${result.nullArm.differenceFromGuideline.high.toFixed(2)}]`,
+);
 console.log('\nSecondary and safety:');
 for (const e of result.endpoints.slice(1)) {
   console.log(
