@@ -253,6 +253,66 @@ const FAMILY_TITLES: Record<string, string> = {
   control: 'Closed-loop control performance',
 };
 
+/**
+ * Reads the endpoint family and names the largest differences in each
+ * direction, so the headline is not buried in a fifteen-row table.
+ *
+ * "Favourable" is judged by each endpoint's own declared direction, not by
+ * sign, and differences whose interval crosses zero are excluded rather than
+ * described - a table this wide will always contain a largest number, and it
+ * is usually noise.
+ */
+function synthesise(rows: EndpointResult[]): string {
+  const decided = rows.filter(
+    (r) => r.family !== 'primary' && Number.isFinite(r.difference.low) &&
+      (r.difference.low > 0 || r.difference.high < 0),
+  );
+  if (decided.length === 0) {
+    return (
+      'No secondary, safety or control endpoint separates the two controllers with an interval ' +
+      'that excludes zero. On this cohort they are, on the evidence here, the same controller ' +
+      'expressed two different ways.'
+    );
+  }
+  const relative = (r: EndpointResult): number => {
+    const base = Math.abs(r.guidelineMean) > 1e-9 ? Math.abs(r.guidelineMean) : 1;
+    const signed = r.higherIsBetter ? r.difference.estimate : -r.difference.estimate;
+    return signed / base;
+  };
+  const sorted = [...decided].sort((a, b) => relative(b) - relative(a));
+  const best = sorted[0];
+  const worst = sorted[sorted.length - 1];
+  const describe = (r: EndpointResult): string =>
+    `${r.label.toLowerCase()} (${fmt(r.policyMean)} against ${fmt(r.guidelineMean)} ${r.unit})`;
+
+  const gains = sorted.filter((r) => relative(r) > 0);
+  const losses = sorted.filter((r) => relative(r) < 0);
+
+  if (gains.length > 0 && losses.length > 0) {
+    return (
+      `Read together: the learned controller is ahead on ${describe(best)} and behind on ` +
+      `${describe(worst)}. ${gains.length} endpoint${gains.length === 1 ? ' favours' : 's favour'} ` +
+      `it and ${losses.length} ${losses.length === 1 ? 'favours' : 'favour'} the comparator, ` +
+      `counting only those whose interval excludes zero. ` +
+      `Which of those trades is worth making is a clinical judgement, not a statistical one, and ` +
+      `it is not settled here.`
+    );
+  }
+  if (gains.length > 0) {
+    return (
+      `Read together: every endpoint that separates the two favours the learned controller, most ` +
+      `clearly ${describe(best)}. That consistency is worth more than any single interval, and ` +
+      `it is still a statement about this model on this cohort.`
+    );
+  }
+  return (
+    `Read together: every endpoint that separates the two favours the comparator, most clearly ` +
+    `${describe(worst)}. A learned controller that matches standard of care on the primary ` +
+    `endpoint while losing on the secondaries has not earned a place in front of a patient, and ` +
+    `saying so is the point of running the trial.`
+  );
+}
+
 function EndpointRows({ rows, family }: { rows: EndpointResult[]; family: string }) {
   const sel = rows.filter((r) => r.family === family);
   if (sel.length === 0) return null;
@@ -475,6 +535,7 @@ export function Trial() {
                   </tbody>
                 </table>
               </div>
+              <p className="rl-section__body">{synthesise(result.endpoints)}</p>
             </div>
           </section>
 

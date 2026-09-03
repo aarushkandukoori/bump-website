@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-03T05:28:14.364Z",
+  "generated": "2026-09-03T05:46:37.456Z",
   "baseline": {
     "guidelineReturn": 76.75628703042504,
     "guidelineTimeInTarget": 0.7644483287544408,
@@ -145,6 +145,90 @@
       "conservativeGap": 1.6939109088371367,
       "epsilonGuideline": 0.25303805034670523,
       "epsilonRandom": 0.07445991205687195
+    },
+    {
+      "episode": 1100,
+      "envSteps": 77426,
+      "trainReturn": 78.10390601512097,
+      "validReturn": 81.54817706332024,
+      "validTimeInTarget": 0.7854632326005873,
+      "validArrestRate": 0.21875,
+      "validShieldRate": 0.00034340659340659343,
+      "loss": 0.21125113755075564,
+      "qMean": 46.05102499506083,
+      "conservativeGap": 1.6670890895913626,
+      "epsilonGuideline": 0.23464414901958622,
+      "epsilonRandom": 0.06788381230539636
+    },
+    {
+      "episode": 1200,
+      "envSteps": 84278,
+      "trainReturn": 73.59439193122984,
+      "validReturn": 79.04481302206315,
+      "validTimeInTarget": 0.7690729624540722,
+      "validArrestRate": 0.25,
+      "validShieldRate": 0.0006868131868131869,
+      "loss": 2.0450647115179135,
+      "qMean": 49.12131819808467,
+      "conservativeGap": 1.6312026614199509,
+      "epsilonGuideline": 0.21846104170915326,
+      "epsilonRandom": 0.062280388520666724
+    },
+    {
+      "episode": 1300,
+      "envSteps": 91668,
+      "trainReturn": 84.55144974616816,
+      "validReturn": 81.31407591571904,
+      "validTimeInTarget": 0.7843636904760463,
+      "validArrestRate": 0.21875,
+      "validShieldRate": 0.004120879120879121,
+      "loss": 4.452669706616181,
+      "qMean": 47.01649144549945,
+      "conservativeGap": 1.6965288516798063,
+      "epsilonGuideline": 0.2042230093546539,
+      "epsilonRandom": 0.057505771453121704
+    },
+    {
+      "episode": 1400,
+      "envSteps": 98101,
+      "trainReturn": 68.99794233023923,
+      "validReturn": 78.99231528070071,
+      "validTimeInTarget": 0.7701728479852072,
+      "validArrestRate": 0.25,
+      "validShieldRate": 0.0010302197802197802,
+      "loss": 1.0908276172843603,
+      "qMean": 43.652313790912416,
+      "conservativeGap": 1.6125181065266814,
+      "epsilonGuideline": 0.19169627011730855,
+      "epsilonRandom": 0.053437371664439265
+    },
+    {
+      "episode": 1500,
+      "envSteps": 105135,
+      "trainReturn": 81.09057390828045,
+      "validReturn": 77.21314836804113,
+      "validTimeInTarget": 0.765909821428433,
+      "validArrestRate": 0.25,
+      "validShieldRate": 0.005151098901098901,
+      "loss": 0.7509698952484417,
+      "qMean": 43.33839492234613,
+      "conservativeGap": 1.6937306021736198,
+      "epsilonGuideline": 0.1806751407917484,
+      "epsilonRandom": 0.04997073201430668
+    },
+    {
+      "episode": 1600,
+      "envSteps": 112362,
+      "trainReturn": 81.88594745955088,
+      "validReturn": 77.90049227893783,
+      "validTimeInTarget": 0.7607640338826469,
+      "validArrestRate": 0.25,
+      "validShieldRate": 0.0010302197802197802,
+      "loss": 0.6706609312541542,
+      "qMean": 42.47526761827324,
+      "conservativeGap": 1.4815539532843391,
+      "epsilonGuideline": 0.1709786595838852,
+      "epsilonRandom": 0.047016845698290705
     }
   ]
 }
