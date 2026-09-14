@@ -18,6 +18,14 @@ const team = [
     email: 'adirocknbolt@gmail.com',
     bio: 'Architects BUMP’s closed-loop sensing, detection, and response systems — combining embedded hardware and software to deliver reliable, real-time cardiac intervention.',
   },
+  {
+    name: 'Ethan Gracias',
+    title: 'COO',
+    photo: `${import.meta.env.BASE_URL}team/ethan-gracias.png`,
+    linkedin: 'https://www.linkedin.com/in/ethan-gracias-b966a232b/',
+    email: 'ethan.i.gracias@gmail.com',
+    bio: 'Leads BUMP’s operations — coordinating the team’s day-to-day execution and the path from research prototype to a device that can reach patients.',
+  },
 ];
 
 export function Team() {
@@ -33,7 +41,7 @@ export function Team() {
         >
           <span className="section__label">The Team</span>
           <h2 className="team__headline">
-            Founders building autonomous cardiac care
+            The people building autonomous cardiac care
           </h2>
         </motion.div>
 
