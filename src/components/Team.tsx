@@ -20,7 +20,7 @@ const team = [
   },
   {
     name: 'Ethan Gracias',
-    title: 'COO',
+    title: 'Co-Founder & COO',
     photo: `${import.meta.env.BASE_URL}team/ethan-gracias.png`,
     linkedin: 'https://www.linkedin.com/in/ethan-gracias-b966a232b/',
     email: 'ethan.i.gracias@gmail.com',
