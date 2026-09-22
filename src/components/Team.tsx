@@ -4,7 +4,7 @@ import './Team.css';
 const team = [
   {
     name: 'Aarush Kandukoori',
-    title: 'Co-Founder & CEO',
+    title: 'Founder & CEO',
     photo: `${import.meta.env.BASE_URL}team/aarush-kandukoori.png`,
     linkedin: 'https://www.linkedin.com/in/aarush-kandukoori/',
     email: 'aarushkandukoori@gmail.com',
