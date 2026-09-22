@@ -12,7 +12,7 @@ const team = [
   },
   {
     name: 'Aditya Kandukoori',
-    title: 'Co-Founder & CTO',
+    title: 'CTO',
     photo: `${import.meta.env.BASE_URL}team/aditya-kandukoori.png`,
     linkedin: 'https://www.linkedin.com/in/aditya-kandukoori-9410563b1/',
     email: 'adirocknbolt@gmail.com',
@@ -20,7 +20,7 @@ const team = [
   },
   {
     name: 'Ethan Gracias',
-    title: 'Co-Founder & COO',
+    title: 'COO',
     photo: `${import.meta.env.BASE_URL}team/ethan-gracias.png`,
     linkedin: 'https://www.linkedin.com/in/ethan-gracias-b966a232b/',
     email: 'ethan.i.gracias@gmail.com',
