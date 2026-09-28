@@ -50,6 +50,46 @@ function scriptedHr(elapsed: number): { hr: number; phase: Phase } {
   return { hr: 72, phase: 'normal' };
 }
 
+/**
+ * Beats elapsed since the start of the scenario: the integral of the rate,
+ * phi(t) = the integral of hr(tau)/60 from 0 to t.
+ *
+ * Dividing the absolute clock by the *instantaneous* RR interval is only
+ * correct while the rate is constant. Across the two scripted ramps it
+ * decouples from the rate badly — the phase runs backwards during the fall and
+ * draws roughly 200 bpm during the recovery — so the waveform ends up
+ * contradicting the heart rate displayed beside it. Integrating fixes both.
+ *
+ * scriptedHr is piecewise constant/linear, so each segment integrates in closed
+ * form and this stays pure and seekable.
+ */
+function beatsElapsed(loopT: number): number {
+  let phi = 0;
+
+  // [0, 8): steady 72 bpm.
+  phi += (72 * Math.min(loopT, 8)) / 60;
+  if (loopT > 8) {
+    // [8, 11): 72 -> 42, i.e. 10 bpm/s.
+    const u = Math.min(loopT, 11) - 8;
+    phi += (72 * u - 5 * u * u) / 60;
+  }
+  if (loopT > 11) {
+    // [11, 18): steady 42 bpm.
+    phi += (42 * (Math.min(loopT, 18) - 11)) / 60;
+  }
+  if (loopT > 18) {
+    // [18, 22): 42 -> 72, i.e. 7.5 bpm/s.
+    const u = Math.min(loopT, SCENARIO_DURATION_SEC) - 18;
+    phi += (42 * u + 3.75 * u * u) / 60;
+  }
+
+  // One scenario is 21.15 beats, so the loop would otherwise wrap mid-beat and
+  // put a visible step in the trace. Stretching by 21/21.15 lands the seam on a
+  // beat boundary; it slows the drawn rate by 0.7% (72 bpm draws as 71.5),
+  // which is far below what the eye or the readout can resolve.
+  return phi * (21 / 21.15);
+}
+
 /** Forced-brady overlay: hold ~40 bpm for `holdSec` after inject. */
 export function sampleAt(
   elapsedSec: number,
@@ -64,8 +104,11 @@ export function sampleAt(
     phase = 'alert';
   }
 
-  const rrSec = 60 / Math.max(hr, 25);
-  const beatPhase = (loopT % rrSec) / rrSec;
+  // The forced hold is a constant 40 bpm, where the instantaneous form is exact;
+  // the scripted path has ramps, so it needs the integrated phase.
+  const beatPhase = forced
+    ? (loopT % (60 / 40)) / (60 / 40)
+    : beatsElapsed(loopT) - Math.floor(beatsElapsed(loopT));
   const noise = Math.sin(loopT * 37.1) * 0.015 + Math.sin(loopT * 11.3) * 0.01;
   const ecg = qrsShape(beatPhase) + noise;
 
