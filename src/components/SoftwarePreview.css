@@ -1,0 +1,315 @@
+.software-preview {
+  padding: var(--section-space) 0 var(--section-space-end);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+}
+
+.software-preview__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.software-preview__header {
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+
+.software-preview__headline {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.software-preview__lede {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.software-preview__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* ---- the app window ---- */
+
+.software-window {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.software-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 38px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.software-window__lights {
+  display: flex;
+  gap: 6px;
+}
+
+/* Uncoloured on purpose: a green dot here would read as a live status light. */
+.software-window__lights i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(10, 10, 18, 0.14);
+}
+
+.software-window__title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+}
+
+/* The banner strip is always present and only changes colour. Animating its
+   height instead would grow the window, and below 900px the caption rail sits
+   underneath it — so the rest of the page would jump down twice every loop. */
+.software-window__alert {
+  background: transparent;
+  color: #fff;
+  transition: background 0.34s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.software-window[data-alerting='true'] .software-window__alert {
+  background: var(--accent);
+}
+
+.software-window__alert-text {
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.software-window[data-alerting='true'] .software-window__alert-text {
+  opacity: 1;
+  transition: opacity 0.28s ease 0.1s;
+}
+
+.software-window__content {
+  padding: 12px 24px 20px;
+}
+
+.software-window__readout {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.software-window__rate {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.software-window__rate-value {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  /* Without this the digits reflow the row on every change. */
+  font-variant-numeric: tabular-nums;
+  transition: color 0.4s ease;
+}
+
+.software-window[data-phase='alert'] .software-window__rate-value,
+.software-window[data-phase='brady'] .software-window__rate-value {
+  color: var(--accent);
+}
+
+.software-window__rate-unit {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.software-window__status {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-tertiary);
+  white-space: nowrap;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.software-window[data-phase='alert'] .software-window__status,
+.software-window[data-phase='brady'] .software-window__status {
+  background: var(--accent-muted);
+  color: var(--accent);
+}
+
+.software-window__trace {
+  display: block;
+  width: 100%;
+  height: clamp(110px, 18vw, 170px);
+}
+
+.software-window__trace-line {
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.4s ease;
+}
+
+.software-window[data-phase='alert'] .software-window__trace-line,
+.software-window[data-phase='brady'] .software-window__trace-line {
+  stroke: var(--accent);
+}
+
+.software-window__trace-head {
+  fill: var(--text-secondary);
+  transition: fill 0.4s ease;
+}
+
+.software-window[data-phase='alert'] .software-window__trace-head,
+.software-window[data-phase='brady'] .software-window__trace-head {
+  fill: var(--accent);
+}
+
+.software-window__progress {
+  height: 2px;
+  background: rgba(10, 10, 18, 0.07);
+}
+
+.software-window__progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* ---- caption rail ---- */
+
+.software-preview__beats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.software-preview__beat {
+  display: grid;
+  grid-template-columns: 3px 1fr;
+  gap: 0 16px;
+  padding: 15px 0;
+}
+
+.software-preview__beat + .software-preview__beat {
+  border-top: 1px solid var(--border);
+}
+
+.software-preview__beat-bar {
+  background: var(--border);
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+.software-preview__beat[data-active='true'] .software-preview__beat-bar {
+  background: var(--accent);
+}
+
+.software-preview__beat-text {
+  display: block;
+}
+
+.software-preview__beat-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.software-preview__beat[data-active='true'] .software-preview__beat-title {
+  color: var(--text-primary);
+}
+
+.software-preview__beat-detail {
+  display: block;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+.software-preview__note {
+  margin-top: 28px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+@media (max-width: 1080px) {
+  .software-preview__stage {
+    grid-template-columns: minmax(0, 1.45fr) minmax(250px, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .software-preview__inner {
+    padding: 0 24px;
+  }
+
+  .software-preview__stage {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .software-window__content {
+    padding: 20px 18px 16px;
+  }
+
+  .software-window__alert-text {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .software-window__readout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .software-window__alert-text,
+  .software-window__rate-value,
+  .software-window__status,
+  .software-window__trace-line,
+  .software-window__trace-head,
+  .software-preview__beat-bar,
+  .software-preview__beat-title,
+  .software-preview__beat-detail {
+    transition: none;
+  }
+}

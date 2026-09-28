@@ -6,6 +6,7 @@ import { HowItWorks } from '../components/HowItWorks';
 import { Team } from '../components/Team';
 import { Research } from '../components/Research';
 import { DetectionShowcase } from '../components/DetectionShowcase';
+import { SoftwarePreview } from '../components/SoftwarePreview';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 
@@ -20,6 +21,7 @@ export function HomePage() {
         <FeatureCarousel />
         <Research />
         <DetectionShowcase />
+        <SoftwarePreview />
         <Team />
         <Contact />
       </main>

@@ -1,25 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import './DetectionShowcase.css';
-
-const HIGHLIGHTS = [
-  {
-    value: '<250 ms',
-    label: 'Sensor-to-alert latency budget',
-  },
-  {
-    value: 'MIT-BIH',
-    label: 'Real ECG replay at 360 Hz',
-  },
-  {
-    value: 'Rate rule',
-    label: 'Authoritative bradycardia gate',
-  },
-  {
-    value: 'ONNX',
-    label: 'Edge-style beat classification',
-  },
-] as const;
 
 const GITHUB_URL = 'https://github.com/aarushkandukoori/bump-detection';
 
@@ -45,47 +25,6 @@ export function DetectionShowcase() {
             decision logic a closed-loop wearable needs when seconds matter.
           </p>
         </motion.div>
-
-        <motion.div
-          className="detection-showcase__highlights"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, delay: 0.08 }}
-        >
-          {HIGHLIGHTS.map((item) => (
-            <div key={item.value} className="detection-showcase__stat">
-              <span className="detection-showcase__stat-value">{item.value}</span>
-              <span className="detection-showcase__stat-label">{item.label}</span>
-            </div>
-          ))}
-        </motion.div>
-
-        {/*
-          Deliberately not scroll-animated. Every other block on this page
-          fades in on intersection, which is fine for decoration; this one is
-          the entry point to the regulatory programme, and an entry point that
-          depends on an IntersectionObserver firing is an entry point that can
-          fail to appear. It renders unconditionally.
-        */}
-        <div className="detection-showcase__rl">
-          <div className="detection-showcase__rl-text">
-            <span className="detection-showcase__rl-label">New programme</span>
-            <h3 className="detection-showcase__rl-title">
-              Reinforcement learning for cardiac device submissions
-            </h3>
-            <p className="detection-showcase__rl-copy">
-              The same decision logic, taken further: a validated cardiovascular simulator, a
-              controller trained inside it under a deterministic safety filter, and the
-              credibility record, in-silico trial and change-control plan that make a learned
-              controller something a regulator can assess. Runs live in the browser.
-            </p>
-          </div>
-          <Link to="/RL-FDA-Approval" className="detection-showcase__rl-cta">
-            Open the programme
-            <ArrowIcon />
-          </Link>
-        </div>
 
         <motion.div
           className="detection-showcase__footer"
@@ -118,20 +57,6 @@ export function DetectionShowcase() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M5 12h13M12 5l7 7-7 7"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
 
